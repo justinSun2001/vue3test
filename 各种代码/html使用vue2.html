@@ -1,0 +1,47 @@
+https://juejin.cn/column/7308647541381955638
+
+<div id="app">
+  <!-- 3. 使用组件 -->
+  <my-component></my-component>
+  <my-component></my-component>
+  <my-component></my-component>
+</div>
+
+<template id="myComponent">
+  <div>
+    <h2>组件{{num}}</h2>
+    <button @click="handleClick">点击+1</button>
+  </div>
+</template>
+
+
+<script>
+
+  // 1. 选项对象
+  let MyComponent = {
+    template: "#myComponent",
+    data: function () {
+      // 每次函数执行都会返回新的数据,非共享数据
+      return {
+        num: 10
+      }
+    },
+    methods: {
+      handleClick() {
+        this.num++
+      }
+    }
+  }
+
+
+  const vm = new Vue({
+    el: "#app",
+    // 2. 注册组件
+    components: {
+      "my-component": MyComponent
+    }
+
+  })
+
+
+</script>

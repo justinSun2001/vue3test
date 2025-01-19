@@ -1,0 +1,44 @@
+/* 清除所有margin和padding */
+p {
+    margin:0;
+    padding:0;
+}
+/* 设置容器宽度为80%，并居中 */
+.container {
+    width:80%;
+    margin:1em auto;
+    line-height: 2;
+    text-indent: 2em;
+    position:relative;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* 设置橡皮擦的位置和大小 */
+.eraser {
+    position: absolute;
+    inset: 0;
+}
+/* 定义百分比属性，继承属性设置为false，初始值为0% */
+@property --p{
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+/* 设置文本动画 */
+.text {
+    --p: 0%;
+    background:  linear-gradient(
+        to right,
+        transparent var(--p),
+        #000 calc(var(--p) + 30px)
+    );
+    color: transparent;
+    animation: erase 5s linear forwards;
+}
+
+/* 设置橡皮擦动画 */
+@keyframes erase {
+    to {
+        --p: 100%;
+    }
+}
